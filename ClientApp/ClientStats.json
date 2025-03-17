@@ -1,18 +1,26 @@
 [
-   {
-      "Id": 1,
-      "Name": "RTN1",
-      "DateIn": "2024-11-24",
-      "DateOut": "2024-11-25",
-      "Status": "OK",
-      "Location": "Casino Genesis"
-   },
-   {
-      "Id": 2,
-      "Name": "RTN2",
-      "DateIn": "2024-11-23",
-      "DateOut": "2024-11-24",
-      "Status": "OK",
-      "Location": "Casino Genesis"
-   }
+  {
+    "Id": "1",
+    "Name": "RTN1",
+    "DateIn": "2024-11-24T00:00:00",
+    "DateOut": "2024-11-25T00:00:00",
+    "Status": "OK",
+    "Location": "Casino Genesis"
+  },
+  {
+    "Id": "2",
+    "Name": "RTN2",
+    "DateIn": "2024-11-23T00:00:00",
+    "DateOut": "2024-11-24T00:00:00",
+    "Status": "OK",
+    "Location": "Casino Genesis"
+  },
+  {
+    "Id": "60343c91-4c09-4ed3-b5c8-d5cbf6427a08",
+    "Name": "LOPESAN",
+    "DateIn": "2024-11-25T05:23:53.234Z",
+    "DateOut": "2024-11-25T05:23:53.234Z",
+    "Status": "OK",
+    "Location": "LOPESAN"
+  }
 ]
