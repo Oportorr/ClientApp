@@ -1,19 +1,29 @@
 
 using ClientApp.Services;
 using ClientApp.Utils;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
+//Add Serilog to the project
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build())
+    .Enrich.FromLogContext()
+     .Enrich.WithClientIp()     // Add this line to enrich logs with client IP
+    .CreateLogger();
 
+//builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 
 // Add services to the container

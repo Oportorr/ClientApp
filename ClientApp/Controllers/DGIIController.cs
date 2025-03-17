@@ -4,7 +4,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Serilog;
+using Serilog.Context;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,15 +23,18 @@ namespace ClientApp.Controllers
     {
         private   string _filePath;
         private readonly IConfiguration _configuration;
-        private readonly FileStorage _fileStorageConfig ;
+        private readonly FileStorage _fileStorageConfig;
+        private readonly ILogger<DGIIController> _logger;
 
 
-        public DGIIController(IConfiguration configuration,IOptions<FileStorage> filestorageOption)
+        public DGIIController(IConfiguration configuration,IOptions<FileStorage> filestorageOption, ILogger<DGIIController> ilogger)
         {
+                                                                                                                                                           
             // Get the file path from configuration
             _configuration = configuration;
             _fileStorageConfig = filestorageOption.Value;
             _filePath = _fileStorageConfig.DgiiRnc;
+            _logger = ilogger;
 
         }
         [ApiExplorerSettings(IgnoreApi = true)]
@@ -49,26 +56,46 @@ namespace ClientApp.Controllers
 
         [HttpGet("{rnc}")]
         [EndpointSummary("Buscar por RNC")]
-        [EndpointDescription("Buscar por RNC sin guiones (#########)")]
+        [EndpointDescription("Buscar por RNC sin guiones formato (#########)")]
         public async Task<ActionResult<ContribuyenteDGII>> GetByRNC(string rnc)
         {
-            try
-            {
-                var contribuyentes = await ReadContribuyentesFromFile();
-                var contribuyente = contribuyentes.FirstOrDefault(c => c.RNC == rnc);
+            // Get the client IP address
+            string clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
 
-                if (contribuyente == null)
+            // If you're behind a proxy, use the X-Forwarded-For header
+            if (HttpContext.Request.Headers.ContainsKey("X-Forwarded-For"))
+            {
+                clientIp = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault() ?? clientIp;
+            }
+
+            // Use LogContext to add the IP to the log context
+            using (LogContext.PushProperty("ClientIP", clientIp))
+            { 
+                try
                 {
-                    return NotFound($"No se encontró contribuyente con RNC: {rnc}");
-                }
 
-                return Ok(contribuyente);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Error reading file: {ex.Message}");
-            }
+                    Log.Information("Search request received with RNC: {SearchTerm}", rnc);
+
+                    var contribuyentes = await ReadContribuyentesFromFile();
+                    var contribuyente = contribuyentes.FirstOrDefault(c => c.RNC == rnc);
+
+                    if (contribuyente == null)
+                    {
+                        return NotFound($"No se encontró contribuyente con RNC: {rnc}");
+                    }
+
+                    return Ok(contribuyente);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Error processing search request");
+                    return StatusCode(500, $"Error reading file: {ex.Message}");
+                }
         }
+
+        }
+
+
 
         [HttpGet("GetByName/{nombre}")]
         [EndpointDescription("Buscar RNC por Nombre o Razon Social")]
@@ -77,23 +104,41 @@ namespace ClientApp.Controllers
 
         public async Task<ActionResult<ContribuyenteDGII>> GetByNombre(string nombre)
         {
-            try
+
+            // Get the client IP address
+            string clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+            // If you're behind a proxy, use the X-Forwarded-For header
+            if (HttpContext.Request.Headers.ContainsKey("X-Forwarded-For"))
             {
-                var contribuyentes = await ReadContribuyentesFromFile();
-                var contribuyente = contribuyentes.FirstOrDefault(c =>
-                c.NombreComercial.Equals(nombre,StringComparison.OrdinalIgnoreCase));
-
-
-                if (contribuyente == null)
-                {
-                    return NotFound($"No se encontró contribuyente con RNC: {nombre}");
-                }
-
-                return Ok(contribuyente);
+                clientIp = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault() ?? clientIp;
             }
-            catch (Exception ex)
+
+            // Use LogContext to add the IP to the log context
+            using (LogContext.PushProperty("ClientIP", clientIp))
             {
-                return StatusCode(500, $"Error reading file: {ex.Message}");
+                try
+                {
+
+                    Log.Information("Search request received with RNC: {SearchTerm}", nombre);
+
+                    var contribuyentes = await ReadContribuyentesFromFile();
+                    var contribuyente = contribuyentes.FirstOrDefault(c =>
+                    c.NombreComercial.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+
+
+                    if (contribuyente == null)
+                    {
+                        return NotFound($"No se encontró contribuyente con RNC: {nombre}");
+                    }
+
+                    return Ok(contribuyente);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Error processing search request");
+                    return StatusCode(500, $"Error reading file: {ex.Message}");
+                }
             }
         }
 
@@ -103,21 +148,37 @@ namespace ClientApp.Controllers
         [OutputCache]
         public async Task<ActionResult<IEnumerable<ContribuyenteDGII>>> Search(string term)
         {
-            try
+
+            // Get the client IP address
+            string clientIp = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+
+            // If you're behind a proxy, use the X-Forwarded-For header
+            if (HttpContext.Request.Headers.ContainsKey("X-Forwarded-For"))
             {
-                _filePath = _fileStorageConfig.DgiiRnc;
-
-                var contribuyentes = await ReadContribuyentesFromFile();
-                var results = contribuyentes.Where(c =>
-                    c.NombreComercial.Contains(term, StringComparison.OrdinalIgnoreCase) ||
-                    c.RNC.Contains(term))
-                    .Take(10);
-
-                return Ok(results);
+                clientIp = HttpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault() ?? clientIp;
             }
-            catch (Exception ex)
+
+            // Use LogContext to add the IP to the log context
+            using (LogContext.PushProperty("ClientIP", clientIp))
             {
-                return StatusCode(500, $"Error reading file: {ex.Message}");
+
+                try
+                {
+                    _filePath = _fileStorageConfig.DgiiRnc;
+
+                    var contribuyentes = await ReadContribuyentesFromFile();
+                    var results = contribuyentes.Where(c =>
+                        c.NombreComercial.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                        c.RNC.Contains(term))
+                        .Take(10);
+
+                    return Ok(results);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Error processing search request");
+                    return StatusCode(500, $"Error reading file: {ex.Message}");
+                }
             }
         }
 
