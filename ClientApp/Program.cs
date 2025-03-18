@@ -22,8 +22,7 @@ var logger = new LoggerConfiguration()
      .Enrich.WithClientIp()     // Add this line to enrich logs with client IP
     .CreateLogger();
 
-//builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+//builder.Logging.AddSerilog(logger);
 
 
 // Add services to the container
@@ -131,8 +130,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
-//{
+if (app.Environment.IsDevelopment())
+{
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
@@ -142,13 +141,13 @@ var app = builder.Build();
       //  c.EnablePersistAuthorization();// This enables token persistence
 
     });
-//}
+}
 //app.UseOutputCache();
 
-//app.UseSwagger();
-//app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
