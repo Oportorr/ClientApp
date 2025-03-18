@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Serilog;
 using Serilog.Context;
-using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
