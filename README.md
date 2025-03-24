@@ -58,7 +58,7 @@ Este EndPoint permite actualizar el archivo: DGII_RNC.zip en el servidor, lo que
 
 ## ☕ Buy Me a Coffee
 
-Help paying the online-Server fee
+Help paying the Online-Server fee
 
 Love my work? Support me with a coffee!  
 ➡️ [Donate via PayPal](https://www.paypal.com/ncp/payment/3TBUUUWEWSGD6)
