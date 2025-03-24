@@ -1,7 +1,8 @@
 # ClientApiDGII
 
 
-Consultas de los RNC de la Repulica Dominicana se realiza,  desde el archivo descargado de la DGII: https://dgii.gov.do/app/WebApps/Consultas/RNC/DGII_RNC.zip
+Consultas de los RNC(Registro Nacional del Contribuyentes) de la Repulica Dominicana se realiza,  desde el archivo descargado de la DGII: https://dgii.gov.do/app/WebApps/Consultas/RNC/DGII_RNC.zip.
+
 El servicio descarga automáticamente este archivo todos los días a las 3:00 a. m. (hora de República Dominicana) para garantizar que la información esté siempre actualizada
 
 Para el uso de las API's  de forma gratuita se puede acceder a la siguiente direccion web: 
@@ -24,7 +25,7 @@ Wrappers para consultas al portal de DGII
 
 
 
-# Descricion de los EndPoints
+# Descripcion de los EndPoints
 # GetByRNC
 http://62.146.171.39:8086/api/DGII/132790316
 
@@ -47,6 +48,9 @@ Este EndPoint permite actualizar el archivo: DGII_RNC.zip en el servidor, lo que
 
 
 *Esto es un proyecto realizado en ASP.NetCore 9, estare subiendo los fuentes del proyecto proximamente*
+
+# Contactos: 
+*Oscar.portorreal@oscarsoft.net*
 
 
 
