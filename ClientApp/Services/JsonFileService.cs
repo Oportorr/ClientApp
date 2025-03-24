@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ClientApp.Models;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using ClientApp.Models;
-using Microsoft.Extensions.Logging;
 using static ClientApp.Models.Record;
 namespace ClientApp.Services
 {
