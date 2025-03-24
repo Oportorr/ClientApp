@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Serilog;
 using Serilog.Context;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClientApp.Controllers
 {
@@ -214,10 +212,6 @@ namespace ClientApp.Controllers
                             NombreCompleto = fields[1],
                             NombreComercial = fields[2],
                             Actividad = fields[3],
-                            //Campo5 = fields[4],
-                            //Campo6 = fields[5],
-                            //Campo7 = fields[6],
-                            //Campo8 = fields[7],
                             FechaRegistro = fields[8],
                             Estado = fields[9],
                             Categoria = fields[10]
