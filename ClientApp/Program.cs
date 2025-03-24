@@ -14,17 +14,35 @@ using System;
 var builder = WebApplication.CreateBuilder(args);
 
 
-//Add Serilog to the project
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .Build())
-    .Enrich.FromLogContext()
-     .Enrich.WithClientIp()     // Add this line to enrich logs with client IP
-    .CreateLogger();
+////Add Serilog to the project
+//var logger = new LoggerConfiguration()
+//    .ReadFrom.Configuration(new ConfigurationBuilder()
+//    .AddJsonFile("appsettings.json")
+//    .Build())
+//    .Enrich.FromLogContext()
+//     .Enrich.WithClientIp()     // Add this line to enrich logs with client IP
+//    .CreateLogger();
+
+
+// Initialize Serilog directly from the configuration
+builder.Host.UseSerilog((context, services, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration)
+        .Enrich.FromLogContext()
+        .Enrich.WithClientIp() // Add client IP enrichment
+);
+
+
 
 builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+//builder.Logging.AddSerilog(logger);
+
+
+
+
+
+// Read Serilog settings from appsettings.json
+builder.Host.UseSerilog((context, services, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration));
 
 
 // Add services to the container
@@ -61,33 +79,6 @@ q.AddTrigger(opts => opts
 builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
 
 
-//builder.Services.AddOutputCache(opciones =>
-//{
-//    //opciones.DefaultExpirationTimeSpan=TimeSpan.FromHours(1);
-//    opciones.DefaultExpirationTimeSpan = TimeSpan.FromSeconds(15);
-//    opciones.AddPolicy("15SecPolicy", p => p.Expire(TimeSpan.FromSeconds(15)));
-
-
-//});
-
-
-
-// Configure JWT authentication
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-//    .AddJwtBearer(options =>
-//    {
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateIssuer = true,
-//            ValidateAudience = true,
-//            ValidateLifetime = true,
-//            ValidateIssuerSigningKey = true,
-//            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-//            ValidAudience = builder.Configuration["Jwt:Audience"],
-//            IssuerSigningKey = new SymmetricSecurityKey(
-//                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-//        };
-//    });
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -145,6 +136,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 //app.UseOutputCache();
+app.UseSerilogRequestLogging(); // Enable request logging
 
 app.UseSwagger();
 app.UseSwaggerUI();

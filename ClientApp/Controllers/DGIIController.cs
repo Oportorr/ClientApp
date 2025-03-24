@@ -79,17 +79,20 @@ namespace ClientApp.Controllers
 
                     if (contribuyente == null)
                     {
-                        _logger.LogWarning($"No se encontró contribuyente con RNC: {rnc} from IP: {clientIp}", rnc, clientIp);
+                        _logger.LogWarning("No se encontró contribuyente con RNC: {RNC} from IP: {ClientIP}", rnc, clientIp);
+
                         return NotFound($"No se encontró contribuyente con RNC: {rnc}");
                     }
 
-                    _logger.LogInformation($"Search request received with RNC : {rnc} from IP: {clientIp}");
+                    //_logger.LogInformation($"Search request received with RNC : {rnc} from IP: {clientIp}");
+                    _logger.LogInformation("Successful search for RNC: {RNC} from IP: {ClientIP}", rnc, clientIp);
+
                     return Ok(contribuyente);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error processing search request for RNC: {rnc} from IP: {clientIp}");
+                _logger.LogWarning(ex, "Error processing search request for RNC: {RNC} from IP: {ClientIP}",rnc,clientIp);
                 return StatusCode(500, $"Error reading file: {ex.Message}");
             }
         }
@@ -129,10 +132,12 @@ namespace ClientApp.Controllers
 
                     if (contribuyente == null)
                     {
+                        _logger.LogWarning("No se encontró contribuyente con : {NOMBRE} from IP: {ClientIP}", nombre, clientIp);
+
                         return NotFound($"No se encontró contribuyente con RNC: {nombre}");
                     }
 
-                    _logger.LogInformation($"Search request received with Nombre: {nombre} from IP: {clientIp}");
+                    _logger.LogInformation("Search request received with Nombre: {NOMBRE} from IP: {ClientIP}", nombre,clientIp);
 
                     return Ok(contribuyente);
                 }
@@ -174,13 +179,13 @@ namespace ClientApp.Controllers
                     c.RNC.Contains(term))
                     .Take(10);
 
-                    _logger.LogInformation($"Search request received with Term: {term} from IP: {clientIp}");
+                    _logger.LogInformation("Search request received with Term: {Term} from IP: {ClientIP}", term,clientIp);
 
                     return Ok(results);
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, "Error processing search request");
+                    _logger.LogWarning(ex, "Error processing search request not found {Term} from IP:ClientIP{}",term,clientIp);
                     return StatusCode(500, $"Error reading file: {ex.Message}");
                 }
             }
