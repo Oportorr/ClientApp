@@ -21,8 +21,8 @@ namespace ClientApp.Controllers
         }
 
         [HttpPost("trigger-download")]
-        [EndpointSummary("Descarga de forma Asincrona el Archivo de la DGII")]
-        [EndpointDescription("Descarga de forma Asincrona el Archivo de la DGII. La descarga podria tomar entre 5 a 10 minutos")]
+        [EndpointSummary("Para Actualizar el Archivo de la DGII  -> https://dgii.gov.do/app/WebApps/Consultas/RNC/DGII_RNC.zip")]
+        [EndpointDescription("Descarga de forma Asincrona el Archivo de la DGII. La descarga podria tomar entre 1 a 5 minutos")]
         public async Task<IActionResult> TriggerDownload()
         {
             try
@@ -32,7 +32,7 @@ namespace ClientApp.Controllers
                 var scheduler = await _schedulerFactory.GetScheduler();
                 await scheduler.TriggerJob(new JobKey("DgiiJob"));
 
-                return Ok(new { message = "DGII file download job triggered successfully" });
+                return Ok(new { message = "DGII file download job triggered successfully. DGII_RNC update " +DateTime.Now.ToString() });
             }
             catch (Exception ex)
             {

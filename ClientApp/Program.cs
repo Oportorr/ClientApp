@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Quartz;
 using Serilog;
@@ -22,7 +23,8 @@ var logger = new LoggerConfiguration()
      .Enrich.WithClientIp()     // Add this line to enrich logs with client IP
     .CreateLogger();
 
-//builder.Logging.AddSerilog(logger);
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 
 // Add services to the container

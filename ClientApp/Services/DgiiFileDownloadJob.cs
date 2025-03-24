@@ -40,8 +40,16 @@ namespace ClientApp.Services
 
                 _logger.LogInformation("Starting DGII file download job at {time}", DateTimeOffset.Now);
 
-                // Ensure the download directory exists
+
+                if (Directory.Exists(downloadFolder))
+                {
+                    Directory.Delete(downloadFolder, true);
+                    _logger.LogError("Delete all folders and sub-folder: {folder}", downloadFolder);
+                }
+
+                // Recreate  the download directory 
                 Directory.CreateDirectory(downloadFolder);
+
 
                 // Delete all existing files in the download folder
                 foreach (var file in Directory.GetFiles(downloadFolder))
