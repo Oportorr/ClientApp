@@ -14,16 +14,6 @@ using System;
 var builder = WebApplication.CreateBuilder(args);
 
 
-////Add Serilog to the project
-//var logger = new LoggerConfiguration()
-//    .ReadFrom.Configuration(new ConfigurationBuilder()
-//    .AddJsonFile("appsettings.json")
-//    .Build())
-//    .Enrich.FromLogContext()
-//     .Enrich.WithClientIp()     // Add this line to enrich logs with client IP
-//    .CreateLogger();
-
-
 // Initialize Serilog directly from the configuration
 builder.Host.UseSerilog((context, services, configuration) =>
     configuration.ReadFrom.Configuration(context.Configuration)
