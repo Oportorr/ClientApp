@@ -47,7 +47,7 @@ Este EndPoint permite actualizar el archivo: DGII_RNC.zip en el servidor, lo que
 
 
 
-*Esto es un proyecto realizado en ASP.NetCore 9, estare subiendo los fuentes del proyecto proximamente*
+*Esto es un proyecto realizado en ASP.NetCore 9*
 
 # Contactos: 
 *Oscar.portorreal@oscarsoft.net*
