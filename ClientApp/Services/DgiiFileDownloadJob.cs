@@ -41,29 +41,38 @@ namespace ClientApp.Services
                 _logger.LogInformation("Starting DGII file download job at {time}", DateTimeOffset.Now);
 
 
-                if (Directory.Exists(downloadFolder))
-                {
-                    Directory.Delete(downloadFolder, true);
-                    _logger.LogError("Delete all folders and sub-folder: {folder}", downloadFolder);
-                }
+                //if (Directory.Exists(downloadFolder))
+                //{
+                //    Directory.Delete(downloadFolder, true);
+                //    _logger.LogError("Delete all folders and sub-folder: {folder}", downloadFolder);
+                //}
 
                 // Recreate  the download directory 
-                Directory.CreateDirectory(downloadFolder);
+
+                if (!Directory.Exists(downloadFolder))
+                {
+                    Directory.CreateDirectory(downloadFolder);
+                }
+
+
+                 //   Directory.CreateDirectory(downloadFolder);
 
 
                 // Delete all existing files in the download folder
-                foreach (var file in Directory.GetFiles(downloadFolder))
-                {
-                    try
-                    {
-                        File.Delete(file);
-                        _logger.LogInformation("Deleted file: {file}", file);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, "Error deleting file: {file}", file);
-                    }
-                }
+                //foreach (var file in Directory.GetFiles(downloadFolder))
+                //{
+                //    try
+                //    {
+                //        File.Delete(file);
+                //        _logger.LogInformation("Deleted file: {file}", file);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        _logger.LogError(ex, "Error deleting file: {file}", file);
+                //    }
+                //}
+
+
 
                 // Download the zip file
                 string zipPath = Path.Combine(downloadFolder, "DGII_RNC.zip");
@@ -82,7 +91,11 @@ namespace ClientApp.Services
                     _logger.LogInformation("File downloaded successfully to {path}", zipPath);
                 }
 
-                // Extract the zip file
+
+
+
+
+                // Extract the zip file and overwrite the file
                 _logger.LogInformation("Extracting zip file");
                 ZipFile.ExtractToDirectory(zipPath, downloadFolder, true);
                 _logger.LogInformation("Extraction completed successfully");
@@ -92,6 +105,9 @@ namespace ClientApp.Services
                 _logger.LogInformation("Deleted zip file after extraction");
 
                 _logger.LogInformation("DGII file download job completed successfully");
+
+
+
             }
             catch (Exception ex)
             {

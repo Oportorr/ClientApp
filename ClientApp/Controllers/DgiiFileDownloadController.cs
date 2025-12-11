@@ -21,8 +21,8 @@ namespace ClientApp.Controllers
         }
 
         [HttpPost("trigger-download")]
-        [EndpointSummary("Para Actualizar el Archivo de la DGII  -> https://dgii.gov.do/app/WebApps/Consultas/RNC/DGII_RNC.zip")]
-        [EndpointDescription("Descarga  de forma Asincrona el Archivo de la DGII. La descarga podria tomar entre 1 a 5 minutos")]
+        [EndpointSummary("Para Actualizar el Archivo de la DGII de Forma Manual  -> https://dgii.gov.do/app/WebApps/Consultas/RNC/DGII_RNC.zip")]
+        [EndpointDescription("Descarga  de Forma Asincrona el Archivo de la DGII. La descarga podria tomar entre 1 a 2 minutos")]
         public async Task<IActionResult> TriggerDownload()
         {
             try
