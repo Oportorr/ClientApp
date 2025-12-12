@@ -148,8 +148,8 @@ namespace ClientApp.Controllers
         }
 
         [HttpGet("search/{term}")]
-        [EndpointDescription("Valores que contienen RNC o nombre, primeras 10 ocurrencias")]
-        [EndpointSummary("Valores que contienen RNC o nombre, primeras 10 ocurrencias")]
+        [EndpointDescription("Buscar Contribuyentes por Nombre Comercial (máximo 10 resultados)")]
+        [EndpointSummary("Buscar Contribuyentes por Nombre Comercial (máximo 10 resultados")]
         [OutputCache]
         public async Task<ActionResult<IEnumerable<ContribuyenteDGII>>> Search(string term)
         {
