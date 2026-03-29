@@ -52,8 +52,8 @@ namespace ClientApp.Controllers
         }
 
         [HttpGet("{rnc}")]
-        [EndpointSummary("Buscar por RNC")]
-        [EndpointDescription("Buscar por RNC sin guiones formato (#########)")]
+        [EndpointSummary("Buscar por RNC o cedula")]
+        [EndpointDescription("Buscar por RNC o cedula sin guiones formato (#########)")]
         public async Task<ActionResult<ContribuyenteDGII>> GetByRNC(string rnc)
         {
             // Get the client IP address
@@ -125,7 +125,7 @@ namespace ClientApp.Controllers
 
                     var contribuyentes = await ReadContribuyentesFromFile();
                     var contribuyente = contribuyentes.FirstOrDefault(c =>
-                    c.NombreComercial.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+                    c.NombreCompleto.Contains(nombre.Trim(), StringComparison.OrdinalIgnoreCase));
 
 
                     if (contribuyente == null)
@@ -173,7 +173,7 @@ namespace ClientApp.Controllers
 
                     var contribuyentes = await ReadContribuyentesFromFile();
                     var results = contribuyentes.Where(c =>
-                        c.NombreComercial.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                        c.NombreComercial.Contains(term.Trim(), StringComparison.OrdinalIgnoreCase) ||
                     c.RNC.Contains(term))
                     .Take(10);
 
@@ -208,13 +208,13 @@ namespace ClientApp.Controllers
                     {
                         contribuyentes.Add(new ContribuyenteDGII
                         {
-                            RNC = fields[0],
-                            NombreCompleto = fields[1],
-                            NombreComercial = fields[2],
-                            Actividad = fields[3],
-                            FechaRegistro = fields[8],
-                            Estado = fields[9],
-                            Categoria = fields[10]
+                            RNC = fields[0].Trim(),
+                            NombreCompleto = fields[1].Trim(),
+                            NombreComercial = fields[2].Trim(),
+                            Actividad = fields[3].Trim(),
+                            FechaRegistro = fields[8].Trim(),
+                            Estado = fields[9].Trim(),
+                            Categoria = fields[10].Trim()
                         });
                     }
                 }
