@@ -9,9 +9,12 @@ using Microsoft.Extensions.Options;
 using Serilog.Context;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClientApp.Controllers
 {
@@ -121,11 +124,24 @@ namespace ClientApp.Controllers
                 try
                 {
 
-                   
+                    var nombreNormalizado = NormalizarTexto(nombre.Trim());
+
+                    // DEBUG - quitar después
+                    _logger.LogInformation("Nombre original: '{Original}' | Normalizado: '{Normalizado}'",
+                        nombre, nombreNormalizado);
+
+
+
 
                     var contribuyentes = await ReadContribuyentesFromFile();
-                    var contribuyente = contribuyentes.FirstOrDefault(c =>
-                    c.NombreCompleto.Contains(nombre.Trim(), StringComparison.OrdinalIgnoreCase));
+
+
+
+
+                    //var contribuyente = contribuyentes.FirstOrDefault(c =>
+                    //c.NombreCompleto.Contains(nombre.Trim(), StringComparison.OrdinalIgnoreCase));
+                    var contribuyente = contribuyentes.FirstOrDefault(c => c.NombreCompletoNormalizado
+                          .Contains(nombreNormalizado, StringComparison.OrdinalIgnoreCase));
 
 
                     if (contribuyente == null)
@@ -169,12 +185,13 @@ namespace ClientApp.Controllers
 
                 try
                 {
-                    _filePath = _fileStorageConfig.DgiiRnc;
+                    //_filePath = _fileStorageConfig.DgiiRnc;
+                    var termNormalizado = NormalizarTexto(term.Trim());
 
                     var contribuyentes = await ReadContribuyentesFromFile();
                     var results = contribuyentes.Where(c =>
-                        c.NombreComercial.Contains(term.Trim(), StringComparison.OrdinalIgnoreCase) ||
-                    c.RNC.Contains(term))
+                        c.NombreCompletoNormalizado.Contains(termNormalizado.Trim(), StringComparison.OrdinalIgnoreCase) ||
+                    c.RNC.Contains(termNormalizado))
                     .Take(10);
 
                     _logger.LogInformation("Search request received with Term: {Term} from IP: {ClientIP}", term,clientIp);
@@ -190,12 +207,38 @@ namespace ClientApp.Controllers
         }
 
 
- 
+
+
+        private static string NormalizarTexto(string texto)
+        {
+            if (string.IsNullOrEmpty(texto)) return texto;
+
+            // Descompone caracteres especiales (ej: Ñ → N + combinación)
+            var normalizado = texto.Normalize(NormalizationForm.FormD);
+
+            // Elimina los caracteres diacríticos EXCEPTO la Ñ
+            var sb = new StringBuilder();
+            foreach (var c in normalizado)
+            {
+                var categoria = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (categoria != UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
+
+
+
+
         private async Task<List<ContribuyenteDGII>> ReadContribuyentesFromFile()
         {
             var contribuyentes = new List<ContribuyenteDGII>();
 
-            using (var reader = new StreamReader(_filePath))
+            // using (var reader = new StreamReader(_filePath))
+            //using (var reader = new StreamReader(_filePath, Encoding.UTF8))
+            using (var reader = new StreamReader(_filePath, Encoding.Latin1))
+
             {
                 string line;
                 while ((line = await reader.ReadLineAsync()) != null)
@@ -214,7 +257,10 @@ namespace ClientApp.Controllers
                             Actividad = fields[3].Trim(),
                             FechaRegistro = fields[8].Trim(),
                             Estado = fields[9].Trim(),
-                            Categoria = fields[10].Trim()
+                            Categoria = fields[10].Trim(),
+
+                            NombreCompletoNormalizado = NormalizarTexto(fields[1].Trim()),
+                            NombreComercialNormalizado = NormalizarTexto(fields[2].Trim())
                         });
                     }
                 }
