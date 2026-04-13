@@ -1,0 +1,188 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\repositories\\ClientApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|d:\\repositories\\clientapp\\clientapp\\controllers\\dgiicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|solutionrelative:clientapp\\controllers\\dgiicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|d:\\repositories\\clientapp\\clientapp\\models\\contribuyentedgii.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|solutionrelative:clientapp\\models\\contribuyentedgii.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|d:\\repositories\\clientapp\\clientapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|solutionrelative:clientapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|d:\\repositories\\clientapp\\clientapp\\controllers\\dgiifiledownloadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|solutionrelative:clientapp\\controllers\\dgiifiledownloadcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|d:\\repositories\\clientapp\\clientapp\\services\\dgiifiledownloadjob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4911C3AC-244D-40FB-91B3-D29E2F4AC03A}|ClientApp\\ClientApiDGII.csproj|solutionrelative:clientapp\\services\\dgiifiledownloadjob.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 355,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{57d563b6-44a5-47df-85be-f4199ad6b651}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ContribuyenteDGII.cs",
+              "DocumentMoniker": "D:\\repositories\\ClientApp\\ClientApp\\Models\\ContribuyenteDGII.cs",
+              "RelativeDocumentMoniker": "ClientApp\\Models\\ContribuyenteDGII.cs",
+              "ToolTip": "D:\\repositories\\ClientApp\\ClientApp\\Models\\ContribuyenteDGII.cs",
+              "RelativeToolTip": "ClientApp\\Models\\ContribuyenteDGII.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-12T03:16:49.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DGIIController.cs",
+              "DocumentMoniker": "D:\\repositories\\ClientApp\\ClientApp\\Controllers\\DGIIController.cs",
+              "RelativeDocumentMoniker": "ClientApp\\Controllers\\DGIIController.cs",
+              "ToolTip": "D:\\repositories\\ClientApp\\ClientApp\\Controllers\\DGIIController.cs",
+              "RelativeToolTip": "ClientApp\\Controllers\\DGIIController.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAASwLYAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T02:58:21.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DgiiFileDownloadJob.cs",
+              "DocumentMoniker": "D:\\repositories\\ClientApp\\ClientApp\\Services\\DgiiFileDownloadJob.cs",
+              "RelativeDocumentMoniker": "ClientApp\\Services\\DgiiFileDownloadJob.cs",
+              "ToolTip": "D:\\repositories\\ClientApp\\ClientApp\\Services\\DgiiFileDownloadJob.cs",
+              "RelativeToolTip": "ClientApp\\Services\\DgiiFileDownloadJob.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowDEAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T21:06:21.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\repositories\\ClientApp\\ClientApp\\appsettings.json",
+              "RelativeDocumentMoniker": "ClientApp\\appsettings.json",
+              "ToolTip": "D:\\repositories\\ClientApp\\ClientApp\\appsettings.json",
+              "RelativeToolTip": "ClientApp\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-10T21:04:54.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DgiiFileDownloadController.cs",
+              "DocumentMoniker": "D:\\repositories\\ClientApp\\ClientApp\\Controllers\\DgiiFileDownloadController.cs",
+              "RelativeDocumentMoniker": "ClientApp\\Controllers\\DgiiFileDownloadController.cs",
+              "ToolTip": "D:\\repositories\\ClientApp\\ClientApp\\Controllers\\DgiiFileDownloadController.cs",
+              "RelativeToolTip": "ClientApp\\Controllers\\DgiiFileDownloadController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T21:04:14.129Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 287,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 398,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
